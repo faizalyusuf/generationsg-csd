@@ -79,13 +79,13 @@ You should see a formatted network scan that refreshes every 10 minutes.
 
 ---
 <h4>Security & Best Practices</h4>
-<br>1. Avoid chmod 777; use groups and proper permissions (775, 664, etc.)
+1. Avoid chmod 777; use groups and proper permissions (775, 664, etc.)
 <br>2. Place scripts in /usr/local/bin rather than mixing them in web directories
 <br>3. Limit Apache to internal access if necessary (via firewall or Allow/Deny rules)
 
 ---
 <h4>Optional Challenges</h4>
-<br>1. Change scan target to a different subnet range
+1. Change scan target to a different subnet range
 <br>2. Add logging to a separate file: /var/log/nmap_scan.log
 <br>3. Filter only active hosts and their MAC addresses into the output
 <br>4. Use HTML/CSS to improve UI presentation (optional)
