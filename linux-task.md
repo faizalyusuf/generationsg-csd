@@ -83,10 +83,3 @@ You should see a formatted network scan that refreshes every 10 minutes.
 <br>2. Place scripts in /usr/local/bin rather than mixing them in web directories
 <br>3. Limit Apache to internal access if necessary (via firewall or Allow/Deny rules)
 
----
-<h4>Optional Challenges</h4>
-1. Change scan target to a different subnet range
-<br>2. Add logging to a separate file: /var/log/nmap_scan.log
-<br>3. Filter only active hosts and their MAC addresses into the output
-<br>4. Use HTML/CSS to improve UI presentation (optional)
-
