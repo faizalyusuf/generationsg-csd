@@ -3,8 +3,8 @@
 ---
 <h4>Objective: Create a basic network scanner accessible through a web browser.</h4> 
 
-<b>The scanner will:
-1. Use cron to schedule Nmap scans every 10 minutes
+<b>The scanner will:</b>
+1. Use cron to schedule Nmap scans every 5 minutes
 2. Output results to a file in the Apache web root
 3. Serve the file using a simple PHP script
 4. Use secure Linux permissions and groups</b>
@@ -15,7 +15,7 @@
 <br>3. Non-root user with sudo privileges
 
 ---
-Step-by-Step Guide:
+<b>Step-by-Step Guide:</b>
 
 <br>1. Install Required Packages
 ```
@@ -24,7 +24,9 @@ sudo apt install apache2 php nmap
 ```
 
 <br>2. Set Up Web Directory with Proper Permissions
-Instead of using chmod 777, follow this secure setup:
+
+<br>Instead of using chmod 777, follow this secure setup:
+
 ```
 sudo groupadd webedit
 sudo usermod -aG webedit $USER
@@ -51,7 +53,7 @@ crontab -e
 ```
 Add:
 ```
-*/10 * * * * /usr/local/bin/network_scan.sh
+*/5 * * * * /usr/local/bin/network_scan.sh
 ```
 
 <br>5. Create a Simple PHP Web Page
@@ -75,7 +77,7 @@ sudo systemctl restart apache2
 In your browser, navigate to:
 ```http://<your-server-ip>/```
 
-You should see a formatted network scan that refreshes every 10 minutes.
+You should see a formatted network scan that refreshes every 5 minutes.
 
 ---
 <h4>Security & Best Practices</h4>
