@@ -39,7 +39,7 @@ Log out and log back in to apply the group change.
 File: ```/usr/local/bin/network_scan.sh```
 ```
 #!/bin/bash
-nmap -sn 192.168.1.0/24 -oN /var/www/html/scan_output.txt
+nmap -sn <your network IP range eg.192.168.1.0/24> -oN /var/www/html/scan_output.txt
 ```
 
 Make it executable:
