@@ -57,7 +57,7 @@ Add:
 ```
 
 <br>5. Create a Simple PHP Web Page
-File: ```/var/www/html/index.php```
+File: ```/var/www/html/network.php```
 ```
 <?php
 echo "<h2>Network Scan Report</h2>";
@@ -75,7 +75,7 @@ sudo systemctl restart apache2
 ```
 
 In your browser, navigate to:
-```http://<your-server-ip>/```
+```http://localhost/network.php```
 
 You should see a formatted network scan that refreshes every 5 minutes.
 
