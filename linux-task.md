@@ -14,15 +14,15 @@
 <br>3. Non-root user with sudo privileges
 
 ---
-<b>Step-by-Step Guide:</b>
+<h4>Step-by-Step Guide:</h4>
 
-<br>1. Install Required Packages
+<br><b>1. Install Required Packages</b>
 ```
 sudo apt update
 sudo apt install apache2 php nmap
 ```
 
-<br>2. Set Up Web Directory with Proper Permissions
+<br><b>2. Set Up Web Directory with Proper Permissions</b>
 
 <br>Instead of using chmod 777, follow this secure setup:
 
@@ -34,8 +34,9 @@ sudo chmod -R 775 /var/www/html
 ```
 Log out and log back in to apply the group change.
 
-<br>3. Create the Nmap Cron Script
-File: ```/usr/local/bin/network_scan.sh```
+<br><b>3. Create the Nmap Cron Script</b>
+
+<br>File: ```/usr/local/bin/network_scan.sh```
 ```
 #!/bin/bash
 nmap -sn <your network IP range eg.192.168.1.0/24> -oN /var/www/html/scan_output.txt
@@ -46,7 +47,7 @@ Make it executable:
 sudo chmod +x /usr/local/bin/network_scan.sh
 ```
 
-<br>4. Set Up Cron Job
+<br><b>4. Set Up Cron Job</b>
 ```
 crontab -e
 ```
@@ -55,8 +56,9 @@ Add:
 */5 * * * * /usr/local/bin/network_scan.sh
 ```
 
-<br>5. Create a Simple PHP Web Page
-File: ```/var/www/html/network.php```
+<br><b>5. Create a Simple PHP Web Page</b>
+
+<br>File: ```/var/www/html/network.php```
 ```
 <?php
 echo "<h2>Network Scan Report</h2>";
@@ -67,16 +69,17 @@ echo "</pre>";
 ?>
 ```
 
-<br>6. Test the Setup
-Restart Apache:
+<br><b>6. Test the Setup</b>
+
+<br>Restart Apache:
 ```
 sudo systemctl restart apache2
 ```
 
-In your browser, navigate to:
+<br>In your browser, navigate to:
 ```http://localhost/network.php```
 
-You should see a formatted network scan that refreshes every 5 minutes.
+<br>You should see a formatted network scan that refreshes every 5 minutes.
 
 ---
 <h4>Security & Best Practices</h4>
