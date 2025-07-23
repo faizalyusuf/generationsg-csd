@@ -1,0 +1,61 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure(2) do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  
+    #webserver
+    config.vm.define "webserver" do |webserver|
+      webserver.vm.box = "ubuntu/xenial64"
+      webserver.vm.provision :shell, path: "bootstrap.sh"
+      webserver.vm.network "private_network", ip: "172.28.128.31"
+      webserver.vm.hostname = "webserver"
+      config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        #vb.name = "agent2"
+      end
+    end
+    #buildagent1
+    config.vm.define "agent1" do |agent1|
+      agent1.vm.box = "ubuntu/xenial64"
+      agent1.vm.network "private_network", ip: "172.28.128.32"
+      agent1.vm.hostname = "agent1"
+      config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        #vb.name = "agent1"
+      end
+    end
+    #buildagent2
+    config.vm.define "agent2" do |agent2|
+      agent2.vm.box = "ubuntu/xenial64"
+      agent2.vm.network "private_network", ip: "172.28.128.33"
+      agent2.vm.hostname = "agent2"
+      config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        #vb.name = "agent2"
+      end
+    end
+    #buildagent3
+    config.vm.define "agent3" do |agent3|
+      agent3.vm.box = "ubuntu/xenial64"
+      agent3.vm.network "private_network", ip: "172.28.128.34"
+      agent3.vm.hostname = "agent3"
+      config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        #vb.name = "agent2"
+      end
+    end
+end
