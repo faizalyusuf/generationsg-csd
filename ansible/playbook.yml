@@ -1,0 +1,13 @@
+---
+# This playbook installs docker on all agent hosts
+
+- name: apply common configuration to all agent hosts
+  become: yes
+  hosts: all
+  remote_user: vagrant
+
+  environment:
+    PATH: /usr/local/bin:{{ ansible_env.PATH }}
+
+  roles:
+    - docker

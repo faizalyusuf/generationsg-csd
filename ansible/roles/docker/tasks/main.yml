@@ -1,0 +1,61 @@
+---
+- name: Install required system packages
+  apt:
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    state: latest
+    update_cache: true
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Install Docker and related packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  ignore_errors: true
+
+- name: Add Docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add user to Docker group
+  user:
+    name: "{{ user }}"
+    groups: docker
+    append: true
+
+- name: Enable and start Docker services
+  systemd:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop:
+    - docker.service
+    - containerd.service
+
+#- name: Pull Docker image
+#  community.docker.docker_image:
+#    name: "{{ container_image }}"
+#    source: pull
+
+#- name: Run test container
+#  community.docker.docker_container:
+#    name: "{{ container_name }}"
+#    image: "{{ container_image }}"
+#    state: present
